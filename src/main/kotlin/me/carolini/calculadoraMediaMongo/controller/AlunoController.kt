@@ -1,5 +1,6 @@
 package me.carolini.calculadoraMediaMongo
 
+import me.carolini.calculadoraMediaMongo.model.Aluno
 import org.springframework.web.bind.annotation.*
 
 @RestController
