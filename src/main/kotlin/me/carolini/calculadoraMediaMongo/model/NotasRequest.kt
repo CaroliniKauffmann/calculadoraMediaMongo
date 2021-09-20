@@ -1,3 +1,3 @@
 package me.carolini.calculadoraMediaMongo.model
 
-class NotasRequest (val notas: Int)
+class NotasRequest (val notas: ArrayList<Double>)
