@@ -6,6 +6,7 @@ import me.carolini.calculadoraMediaMongo.resquest.AlunoRequest
 import me.carolini.calculadoraMediaMongo.repository.AlunoRepository
 import me.carolini.calculadoraMediaMongo.repository.NotasRepository
 import me.carolini.calculadoraMediaMongo.resquest.EnviaNotasRequest
+import org.bson.types.ObjectId
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -31,4 +32,10 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
         alunoRepository.save(aluno)
         return ResponseEntity(aluno, HttpStatus.ACCEPTED)
     }
+    @GetMapping("/media")
+    fun media(@RequestParam alunoID: ObjectId, @RequestParam anoID: ObjectId): ResponseEntity<List<String>> {
+        val resultado = listOf<String>("Carolini, do ano 2021, teve a média x", "Você foi aprovado!")
+        return ResponseEntity(resultado, HttpStatus.ACCEPTED)
+    }
+
 }
