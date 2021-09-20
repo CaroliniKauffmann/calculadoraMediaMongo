@@ -1,6 +1,5 @@
 package me.carolini.calculadoraMediaMongo.resquest
 
-import me.carolini.calculadoraMediaMongo.model.AlunoModel
-import me.carolini.calculadoraMediaMongo.model.NotasModel
+import org.bson.types.ObjectId
 
-class EnviaNotasRequest (val aluno: AlunoModel, val notas: NotasModel)
+class EnviaNotasRequest (val aluno: ObjectId, val notas: ObjectId)

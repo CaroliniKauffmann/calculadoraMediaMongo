@@ -13,4 +13,10 @@ class NotasModel (
     ){
     @DBRef
     lateinit var ano: AnoModel
+
+    fun addAno(ano: AnoModel) {
+        if (!this::ano.isInitialized){
+            this.ano = ano
+        }
+    }
 }

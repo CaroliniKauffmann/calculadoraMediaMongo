@@ -15,6 +15,13 @@ class AlunoModel (
     @DBRef
     lateinit var notas: ArrayList<NotasModel>
 
+    fun addNotas(notas: NotasModel) {
+        if (!this::notas.isInitialized){
+            this.notas = arrayListOf<NotasModel>()
+        }
+        this.notas.add(notas)
+    }
+
 
 //    private fun calcularMedia(): Float {
 //
