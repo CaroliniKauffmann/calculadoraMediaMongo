@@ -2,9 +2,9 @@ package me.carolini.calculadoraMediaMongo.model
 
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
 import org.springframework.data.mongodb.core.mapping.Document
 import kotlin.collections.ArrayList
-import org.springframework.data.mongodb.core.mapping.DBRef as MappingDBRef
 
 @Document("aluno")
 class AlunoModel (
@@ -12,6 +12,9 @@ class AlunoModel (
     var id: ObjectId = ObjectId.get(),
     var nome: String
 ) {
+    @DBRef
+    lateinit var notas: ArrayList<NotasModel>
+
 
 //    private fun calcularMedia(): Float {
 //

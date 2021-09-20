@@ -1,7 +1,7 @@
 package me.carolini.calculadoraMediaMongo
 
 import me.carolini.calculadoraMediaMongo.model.AlunoModel
-import me.carolini.calculadoraMediaMongo.model.AlunoRequest
+import me.carolini.calculadoraMediaMongo.resquest.AlunoRequest
 import me.carolini.calculadoraMediaMongo.repository.AlunoRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -18,5 +18,6 @@ class CadastroAluno (private val alunoRepository: AlunoRepository) {
         ))
         return ResponseEntity(aluno, HttpStatus.CREATED)
     }
-
+    @PostMapping("/enviar-notas")
+    fun enviarNotas(@RequestBody request: )
 }

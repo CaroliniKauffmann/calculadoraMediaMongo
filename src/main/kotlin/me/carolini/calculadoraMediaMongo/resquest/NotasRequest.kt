@@ -1,4 +1,4 @@
-package me.carolini.calculadoraMediaMongo.model
+package me.carolini.calculadoraMediaMongo.resquest
 
 import org.bson.types.ObjectId
 

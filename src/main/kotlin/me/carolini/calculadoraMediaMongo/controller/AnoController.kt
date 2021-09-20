@@ -1,6 +1,6 @@
 package me.carolini.calculadoraMediaMongo.controller
 import me.carolini.calculadoraMediaMongo.model.AnoModel
-import me.carolini.calculadoraMediaMongo.model.AnoRequest
+import me.carolini.calculadoraMediaMongo.resquest.AnoRequest
 import me.carolini.calculadoraMediaMongo.repository.AnoRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
