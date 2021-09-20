@@ -23,6 +23,7 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
         ))
         return ResponseEntity(aluno, HttpStatus.CREATED)
     }
+
     @PostMapping("/enviar-notas")
     fun enviarNotas(@RequestBody request: EnviaNotasRequest): ResponseEntity<AlunoModel> {
         val aluno = alunoRepository.findOneById(request.aluno)
@@ -32,6 +33,7 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
         alunoRepository.save(aluno)
         return ResponseEntity(aluno, HttpStatus.ACCEPTED)
     }
+
     @GetMapping("/media")
     fun media(@RequestParam alunoID: ObjectId, @RequestParam anoID: ObjectId): ResponseEntity<List<String>> {
         val resultado = listOf<String>("Carolini, do ano 2021, teve a média x", "Você foi aprovado!")
