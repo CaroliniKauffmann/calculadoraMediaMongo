@@ -4,6 +4,7 @@ import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import kotlin.collections.ArrayList
+import org.springframework.data.mongodb.core.mapping.DBRef as MappingDBRef
 
 @Document("aluno")
 class AlunoModel (
@@ -11,6 +12,7 @@ class AlunoModel (
     var id: ObjectId = ObjectId.get(),
     var nome: String
 ) {
+
 //    private fun calcularMedia(): Float {
 //
 //        val totalDeNotas = notas.size

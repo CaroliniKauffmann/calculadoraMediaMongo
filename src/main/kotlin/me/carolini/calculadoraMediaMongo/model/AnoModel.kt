@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.core.mapping.Document
 class AnoModel (
     @Id
     var id: ObjectId = ObjectId.get(),
-    var ano: Int
+    var ano: Int = 0
 )
