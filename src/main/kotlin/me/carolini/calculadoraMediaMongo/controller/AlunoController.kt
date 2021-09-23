@@ -28,15 +28,28 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
     fun enviarNotas(@RequestBody request: EnviaNotasRequest): ResponseEntity<AlunoModel> {
         val aluno = alunoRepository.findOneById(request.aluno)
         val notas = notasRepository.findOneById(request.notas)
-        aluno.addNotas(notas)
-        notas.addAno(notas.ano)
-        alunoRepository.save(aluno)
+        if (aluno.notas.filter { it.id.equals(request.notas)}.isEmpty()) {
+            aluno.addNotas(notas)
+            notas.addAno(notas.ano)
+            alunoRepository.save(aluno)
+        }
+
         return ResponseEntity(aluno, HttpStatus.ACCEPTED)
     }
 
     @GetMapping("/media")
-    fun media(@RequestParam alunoID: ObjectId, @RequestParam anoID: ObjectId): ResponseEntity<List<String>> {
-        val resultado = listOf<String>("Carolini, do ano 2021, teve a média x", "Você foi aprovado!")
+    fun media(@RequestParam alunoID: ObjectId, @RequestParam anoID: ObjectId, @RequestParam mediaAprovacao: Int): ResponseEntity<List<String>> {
+        val aluno = alunoRepository.findOneById(alunoID)
+        if (aluno.notas.isEmpty()) {
+            return ResponseEntity(listOf("O Aluno não tem notas lançadas!"), HttpStatus.NO_CONTENT)
+        }
+        if (aluno.notas.filter { it.ano.id.equals(anoID)}.isEmpty()) {
+            return ResponseEntity(listOf("O Ano não foi encontrado!"), HttpStatus.NOT_FOUND)
+        }
+        val notas = aluno.notas.find { it.ano.id.equals(anoID) }
+        val resultado = notas?.let {
+            listOf<String>(it.mostrarResultadoMedia(aluno.nome), notas.verificarAprovacao(mediaAprovacao))
+        }
         return ResponseEntity(resultado, HttpStatus.ACCEPTED)
     }
 

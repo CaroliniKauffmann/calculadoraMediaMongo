@@ -16,30 +16,9 @@ class AlunoModel (
     lateinit var notas: ArrayList<NotasModel>
 
     fun addNotas(notas: NotasModel) {
-        if (!this::notas.isInitialized){
+        if (!this::notas.isInitialized) {
             this.notas = arrayListOf<NotasModel>()
         }
         this.notas.add(notas)
     }
-
-
-//    private fun calcularMedia(): Float {
-//
-//        val totalDeNotas = notas.size
-//        val soma = notas.sum()
-//        return soma / totalDeNotas
-//    }
-//
-//    fun mostrarResultadoMedia(): String {
-//        return "$nome, do ano $ano, teve a média ${calcularMedia()}"
-//    }
-//
-//    fun verificarAprovacao(mediaAprovacao:Int): String {
-//        if (calcularMedia() >= mediaAprovacao) {
-//            return "Você foi aprovado!"
-//        } else {
-//            return "Você foi reprovado!"
-//        }
-//
-//    }
 }
