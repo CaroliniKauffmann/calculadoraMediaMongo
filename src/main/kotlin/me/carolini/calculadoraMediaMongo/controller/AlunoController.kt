@@ -10,7 +10,6 @@ import org.bson.types.ObjectId
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import kotlin.isInitialized as isInitialized
 
 @RestController
 @RequestMapping("/cadastro/aluno")
@@ -18,9 +17,11 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
 
     @PostMapping("/novo")
     fun cadastroAluno(@RequestBody dadosDoAluno: AlunoRequest): ResponseEntity<AlunoModel> {
-        val aluno = alunoRepository.save(AlunoModel(
+        val alunoModel = AlunoModel(
             nome = dadosDoAluno.nome
-        ))
+        )
+        alunoModel.inicializaNotas()
+        val aluno = alunoRepository.save(alunoModel)
         return ResponseEntity(aluno, HttpStatus.CREATED)
     }
 
@@ -51,6 +52,14 @@ class CadastroAluno (private val alunoRepository: AlunoRepository, private val n
             listOf<String>(it.mostrarResultadoMedia(aluno.nome), notas.verificarAprovacao(mediaAprovacao))
         }
         return ResponseEntity(resultado, HttpStatus.ACCEPTED)
+    }
+
+    @DeleteMapping("/deletarAluno/{alunoID}")
+    fun deletarAluno(@PathVariable alunoID: ObjectId): ResponseEntity<String> {
+        if (alunoRepository.existsById(alunoID)) {
+            alunoRepository.deleteById(alunoID)
+        }
+       return ResponseEntity("Aluno deletado com sucesso!", HttpStatus.OK)
     }
 
 }
