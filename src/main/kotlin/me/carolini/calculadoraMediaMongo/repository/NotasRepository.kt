@@ -7,4 +7,7 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface NotasRepository : MongoRepository<NotasModel, String> {
     fun findOneById(id: ObjectId): NotasModel
+    fun existsById(notaID: ObjectId): Boolean
+    fun deleteById(notaID: ObjectId)
+
 }

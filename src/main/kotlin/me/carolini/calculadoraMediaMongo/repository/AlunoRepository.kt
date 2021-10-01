@@ -6,4 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface AlunoRepository : MongoRepository<AlunoModel, String> {
     fun findOneById(id: ObjectId): AlunoModel
+    fun existsById(alunoID: ObjectId): Boolean
+    fun deleteById(alunoID: ObjectId)
 }
