@@ -6,4 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface AnoRepository : MongoRepository<AnoModel, String> {
     fun findOneById(id: ObjectId): AnoModel
+    fun existsById(anoID: ObjectId): Boolean
+    fun deleteById(anoID: ObjectId)
 }
